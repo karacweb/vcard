@@ -26,6 +26,11 @@ final class VCard
         $this->card = new SabreVCard();
     }
 
+    public function getVCard(): SabreVCard
+    {
+        return $this->card;
+    }
+
     public function setCommonName($commonName)
     {
         $this->card->FN = $commonName;
