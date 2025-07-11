@@ -102,21 +102,21 @@ final class VCard
      */
     public function addOrg(string|array $org)
     {
-        $this->card->add('ORG', collect($org)->join(';'));
+        $this->card->add('ORG', collect($org)->join(';'), ['CHARSET' => 'UTF-8']);
 
         return $this;
     }
 
     public function addTitle(string $title)
     {
-        $this->card->add('TITLE', $title);
+        $this->card->add('TITLE', $title, ['CHARSET' => 'UTF-8']);
 
         return $this;
     }
 
     public function addRole(string $role)
     {
-        $this->card->add('ROLE', $role);
+        $this->card->add('ROLE', $role, ['CHARSET' => 'UTF-8']);
 
         return $this;
     }
@@ -143,7 +143,7 @@ final class VCard
         bool $pref = false,
         string $type = '',
     ) {
-        $properties = [];
+        $properties = ['CHARSET' => 'UTF-8'];
         if ($type) {
             $properties[$type] = 1;
         }
@@ -189,12 +189,12 @@ final class VCard
 
     private function serializeNames()
     {
-        $this->card->N = [
+        $this->card->add('N', [
             collect($this->familyNames)->join(','),
             collect($this->givenNames)->join(','),
             collect($this->additionalNames)->join(','),
             collect($this->honorificPrefixes)->join(','),
             collect($this->honorificSuffixes)->join(','),
-        ];
+        ], ['CHARSET' => 'UTF-8']);
     }
 }
