@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Karacweb\VCard;
 
-use Carbon\Carbon;
 use Sabre\VObject\Component\VCard as SabreVCard;
 
 final class VCard
@@ -121,9 +120,13 @@ final class VCard
         return $this;
     }
 
-    public function setBirthday(Carbon $birthday)
+    /**
+     * @param  string  $birthday  Format : Y-m-d
+     * @return $this
+     */
+    public function setBirthday(string $birthday)
     {
-        $this->card->BDAY = $birthday->format('Y-m-d');
+        $this->card->BDAY = $birthday;
 
         return $this;
     }
