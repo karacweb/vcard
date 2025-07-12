@@ -23,6 +23,7 @@ final class VCard
     public function __construct()
     {
         $this->card = new SabreVCard();
+        $this->card = $this->card->convert(SabreVCard::VCARD30);
     }
 
     public function getVCard(): SabreVCard
